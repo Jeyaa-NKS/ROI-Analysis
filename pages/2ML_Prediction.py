@@ -4,7 +4,6 @@ from sklearn.cluster import KMeans
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.svm import SVR
-from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
 
@@ -38,7 +37,7 @@ if uploaded_file is not None:
     st.write(clustered_data[['Earning', 'Earning Potential', 'Cluster']])
 
     # Data processing and model training
-    X = clustered_data[['Earning', 'Earning Potential', 'Cluster']]
+    X = clustered_data[['Earning', 'Earning Potential']]  # Exclude 'Cluster' feature
     y = clustered_data['Spending Limit']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -61,10 +60,9 @@ if uploaded_file is not None:
     st.subheader('Enter new user data to predict Spending Limit:')
     earning = st.number_input('Earning', value=1200)
     earning_potential = st.number_input('Earning Potential', value=2000)
-    cluster = st.number_input('Cluster', value=0)
 
     # Predict Spending Limit for the user input
-    predicted_spending_limit = model.predict([[earning, earning_potential, cluster]])
+    predicted_spending_limit = model.predict([[earning, earning_potential]])
 
     # Display the predicted Spending Limit
     st.subheader('Predicted Spending Limit for the new user:')
