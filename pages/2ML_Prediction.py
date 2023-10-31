@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 # Function to perform clustering
 def perform_clustering(data, k):
     kmeans = KMeans(n_clusters=k, random_state=42)
-    data['Cluster'] = kmeans.fit_predict(data[['Earning', 'Earning Potential']])
+    data['Cluster'] = kmeans.fit_predict(data[['Earning', 'Earning Potential','Spending Limit']])
     return data
 
 # Allow user to upload a CSV file
