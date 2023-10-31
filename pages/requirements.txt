@@ -1,0 +1,6 @@
+streamlit
+pandas
+numpy
+scikit-learn
+seaborn
+tensorflow==2.6.0
